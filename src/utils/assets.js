@@ -5,5 +5,7 @@
  * @returns {string} - The complete path to the asset
  */
 export function getAssetPath(asset) {
-  return `${import.meta.env.BASE_URL}${asset}`;
+  // For Vite, we use the configured base URL from vite.config.js
+  const base = import.meta.env.BASE_URL || "/";
+  return `${base}${asset}`;
 }
