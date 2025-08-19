@@ -7,6 +7,7 @@ import {
   Star,
   Calendar,
 } from "lucide-react";
+import { getAssetPath } from "../utils/assets";
 
 const Education = () => {
   const education = {
@@ -137,7 +138,7 @@ const Education = () => {
               <div className="space-y-4">
                 <div className="aspect-video rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
                   <img
-                    src="/school.jpg"
+                    src={getAssetPath("school.jpg")}
                     alt="University Campus - Beautiful campus where I spent four amazing years learning and growing"
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                   />
@@ -152,7 +153,7 @@ const Education = () => {
               <div className="space-y-4">
                 <div className="aspect-video rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
                   <img
-                    src="/profile_1.JPG"
+                    src={getAssetPath("profile_1.JPG")}
                     alt="Graduation Day - Proud moment of completing my degree with academic excellence"
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                   />

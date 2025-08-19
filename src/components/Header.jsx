@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Menu, X, Download } from "lucide-react";
+import { getAssetPath } from "../utils/assets";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -62,8 +63,8 @@ const Header = () => {
   };
 
   const handleResumeDownload = () => {
-    // Replace with actual resume file path when available
-    const resumeUrl = "/resume.pdf";
+    // Use the asset utility function to get the correct path
+    const resumeUrl = getAssetPath("resume.pdf");
 
     // Create a temporary anchor element to trigger download
     const link = document.createElement("a");

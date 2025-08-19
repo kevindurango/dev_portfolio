@@ -1,5 +1,6 @@
 import React from "react";
 import { ChevronDown, Mail, Phone, Download, User, Camera } from "lucide-react";
+import { getAssetPath } from "../utils/assets";
 
 const Hero = () => {
   const scrollToAbout = () => {
@@ -22,7 +23,7 @@ const Hero = () => {
             <div className="w-full h-full bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-700 rounded-full p-1 shadow-xl">
               <div className="w-full h-full rounded-full overflow-hidden">
                 <img
-                  src="/DSC_1097.JPG"
+                  src={getAssetPath("DSC_1097.JPG")}
                   alt="Profile"
                   className="w-full h-full object-cover"
                 />
