@@ -69,7 +69,7 @@ const Header = () => {
     // Create a temporary anchor element to trigger download
     const link = document.createElement("a");
     link.href = resumeUrl;
-    link.download = "Kevin_Chris_Durango_Resume.pdf";
+    link.download = "resume.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
