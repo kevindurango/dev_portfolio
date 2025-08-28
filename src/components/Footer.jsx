@@ -7,12 +7,12 @@ const Footer = () => {
   const socialLinks = [
     {
       icon: <Github className="w-5 h-5" />,
-      href: "https://github.com/kevinchris",
+      href: "https://github.com/kevindurango",
       label: "GitHub",
     },
     {
       icon: <Linkedin className="w-5 h-5" />,
-      href: "https://linkedin.com/in/kevinchris",
+      href: "https://www.linkedin.com/in/kevin-chris-durango-356720173/",
       label: "LinkedIn",
     },
     {
@@ -48,7 +48,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-gray-900 text-white">
+    <footer className="bg-gray-900 text-white p-4">
       {/* Main Footer Content */}
       <div className="container py-12">
         <div className="grid md:grid-cols-4 gap-8">

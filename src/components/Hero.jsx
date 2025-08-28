@@ -14,7 +14,7 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 relative"
+      className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 relative pt-20 md:pt-0"
     >
       <div className="container mx-auto px-4 text-center">
         <div className="max-w-4xl mx-auto">
@@ -82,10 +82,14 @@ const Hero = () => {
               Call Me
             </a>
 
-            <button className="btn btn-outline flex items-center gap-2">
+            <a
+              href="/dev_portfolio/resume.pdf"
+              download="Kevin_Chris_Durango_Resume.pdf"
+              className="btn btn-outline flex items-center gap-2"
+            >
               <Download size={20} />
               Download CV
-            </button>
+            </a>
           </div>
 
           {/* Quick Stats */}

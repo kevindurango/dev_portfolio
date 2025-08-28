@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   GraduationCap,
   Award,
@@ -6,44 +6,147 @@ import {
   BookOpen,
   Star,
   Calendar,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 import { getAssetPath } from "../utils/assets";
 import schoolImage from "../assets/images/school.jpg";
 import graduationImage from "../assets/images/profile_1.JPG";
+import torImage from "../assets/images/tor-preview.jpg";
+import deansList2022 from "../assets/images/deans-list-2022.jpg";
+import deansList2024 from "../assets/images/deans_list_2024.jpg";
+import deansList2025 from "../assets/images/deans_list_2025.jpg";
+
+// Awards Slideshow Component
+const AwardsSlideshow = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const awards = [
+    {
+      image: deansList2022,
+      title: "Dean's List 2022",
+      description: "Academic Excellence Award",
+    },
+    {
+      image: deansList2024,
+      title: "Dean's List 2024",
+      description: "Academic Excellence Award",
+    },
+    {
+      image: deansList2025,
+      title: "Presidential Award 2025",
+      description: "Highest Academic Achievement",
+    },
+  ];
+
+  // Auto-rotate slides
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % awards.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % awards.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + awards.length) % awards.length);
+  };
+
+  return (
+    <div className="aspect-[3/4] bg-white rounded-lg border shadow relative overflow-hidden">
+      {/* Slide content */}
+      <div className="h-full w-full relative flex flex-col">
+        {awards.map((award, index) => (
+          <div
+            key={index}
+            className={`absolute top-0 left-0 h-full w-full transition-opacity duration-500 flex flex-col ${
+              index === currentSlide ? "opacity-100 z-10" : "opacity-0 z-0"
+            }`}
+          >
+            <div className="flex-1 overflow-hidden flex items-center justify-center bg-gray-50 p-2">
+              <div className="relative w-full h-full flex items-center justify-center">
+                <img
+                  src={award.image}
+                  alt={award.title}
+                  className="max-w-full max-h-full object-contain"
+                  style={{ maxHeight: "calc(100% - 10px)" }}
+                />
+              </div>
+            </div>
+            <div className="py-1 px-2 bg-white absolute bottom-0 left-0 right-0">
+              <p className="text-sm font-medium text-center">{award.title}</p>
+              <p className="text-xs text-gray-600 text-center">
+                {award.description}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Navigation buttons */}
+      <button
+        onClick={prevSlide}
+        className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/70 rounded-full p-1 hover:bg-white transition-colors z-20"
+        aria-label="Previous award"
+      >
+        <ChevronLeft className="w-5 h-5 text-gray-800" />
+      </button>
+      <button
+        onClick={nextSlide}
+        className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/70 rounded-full p-1 hover:bg-white transition-colors z-20"
+        aria-label="Next award"
+      >
+        <ChevronRight className="w-5 h-5 text-gray-800" />
+      </button>
+
+      {/* Indicator dots */}
+      <div className="absolute bottom-10 left-0 right-0 flex justify-center space-x-2 z-30">
+        {awards.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentSlide(index)}
+            className={`h-2 rounded-full transition-all ${
+              index === currentSlide ? "w-4 bg-primary-600" : "w-2 bg-gray-300"
+            }`}
+            aria-label={`Go to award ${index + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
 
 const Education = () => {
   const education = {
     degree: "Bachelor of Science in Information Technology",
-    school: "Your University Name",
-    period: "2020 - 2024",
-    gpa: "3.8/4.0", // Update with your actual GPA
-    location: "City, Country",
+    school: "Negros Oriental State University",
+    period: "2021 - 2025",
+    gpa: "", // Update with your actual GPA
+    location: "Dumaguete City, Negros Oriental, Philippines",
   };
 
   const achievements = [
     {
       title: "Dean's List",
-      description: "Consistently maintained high academic performance",
-      period: "2021-2024",
+      description: "Recognized for outstanding academic achievement",
+      period: "2022",
+      icon: <Trophy className="w-6 h-6" />,
+    },
+    {
+      title: "Dean's List",
+      description: "Maintained excellent academic standing",
+      period: "2024",
       icon: <Trophy className="w-6 h-6" />,
     },
     {
       title: "Presidential Academic Award",
-      description: "Top 10% of graduating class",
-      period: "2024",
+      description: "Highest recognition for academic excellence",
+      period: "2025",
       icon: <Award className="w-6 h-6" />,
-    },
-    {
-      title: "Dean's List Awardee",
-      description: "Recognition for outstanding capstone project",
-      period: "2024",
-      icon: <Star className="w-6 h-6" />,
-    },
-    {
-      title: "Programming Competition Winner",
-      description: "1st place in university coding competition",
-      period: "2023",
-      icon: <Trophy className="w-6 h-6" />,
     },
   ];
 
@@ -60,18 +163,9 @@ const Education = () => {
 
   const extracurriculars = [
     {
-      role: "President",
-      organization: "IT Students Association",
-      period: "2023-2024",
-      description:
-        "Led a team of 50+ students in organizing tech events and workshops",
-    },
-    {
-      role: "Member",
-      organization: "Programming Club",
-      period: "2021-2024",
-      description:
-        "Participated in coding competitions and peer learning sessions",
+      role: "Athlete",
+      organization: "NORSU Blue Dolphins Boxing Team",
+      period: "2023-2025",
     },
   ];
 
@@ -103,9 +197,6 @@ const Education = () => {
                   <Calendar className="w-4 h-4 mr-2" />
                   <span>{education.period}</span>
                 </div>
-                <div className="text-lg font-semibold text-primary-600">
-                  GPA: {education.gpa}
-                </div>
               </div>
             </div>
 
@@ -116,15 +207,17 @@ const Education = () => {
                 <div className="text-sm text-gray-600">Years</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-primary-600">3.8</div>
+                <div className="text-2xl font-bold text-primary-600">
+                  1.4598
+                </div>
                 <div className="text-sm text-gray-600">GPA</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-primary-600">15+</div>
+                <div className="text-2xl font-bold text-primary-600">4+</div>
                 <div className="text-sm text-gray-600">Projects</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-primary-600">5+</div>
+                <div className="text-2xl font-bold text-primary-600">3</div>
                 <div className="text-sm text-gray-600">Awards</div>
               </div>
             </div>
@@ -171,19 +264,19 @@ const Education = () => {
               <h4 className="text-lg font-semibold text-gray-800 mb-4 text-center">
                 Academic Records Preview
               </h4>
-              <div className="grid md:grid-cols-3 gap-4">
-                <div className="aspect-[3/4] bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg border-2 border-dashed border-gray-300 flex flex-col items-center justify-center text-gray-500 hover:border-primary-300 hover:bg-gradient-to-br hover:from-primary-50 hover:to-primary-100 transition-all duration-300">
-                  <BookOpen className="w-8 h-8 mb-2 text-gray-400" />
-                  <p className="text-xs font-medium">TOR Preview</p>
+              <div className="grid md:grid-cols-2 gap-4">
+                {/* TOR Preview */}
+                <div className="aspect-[3/4] bg-white rounded-lg border shadow flex flex-col items-center justify-center overflow-hidden">
+                  <img
+                    src={torImage}
+                    alt="TOR Preview"
+                    className="w-full h-full object-cover"
+                  />
+                  <p className="text-xs font-medium mt-2">TOR Preview</p>
                 </div>
-                <div className="aspect-[3/4] bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg border-2 border-dashed border-gray-300 flex flex-col items-center justify-center text-gray-500 hover:border-primary-300 hover:bg-gradient-to-br hover:from-primary-50 hover:to-primary-100 transition-all duration-300">
-                  <Trophy className="w-8 h-8 mb-2 text-gray-400" />
-                  <p className="text-xs font-medium">Award Certificate</p>
-                </div>
-                <div className="aspect-[3/4] bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg border-2 border-dashed border-gray-300 flex flex-col items-center justify-center text-gray-500 hover:border-primary-300 hover:bg-gradient-to-br hover:from-primary-50 hover:to-primary-100 transition-all duration-300">
-                  <Star className="w-8 h-8 mb-2 text-gray-400" />
-                  <p className="text-xs font-medium">Dean's List</p>
-                </div>
+
+                {/* Awards Slideshow */}
+                <AwardsSlideshow />
               </div>
             </div>
           </div>
@@ -270,23 +363,6 @@ const Education = () => {
                 </div>
               ))}
             </div>
-          </div>
-
-          {/* TOR/Transcript Note */}
-          <div className="mt-8 bg-primary-50 border border-primary-200 rounded-lg p-6 text-center">
-            <div className="flex items-center justify-center mb-3">
-              <BookOpen className="w-6 h-6 text-primary-600 mr-2" />
-              <h4 className="text-lg font-semibold text-primary-800">
-                Academic Records
-              </h4>
-            </div>
-            <p className="text-primary-700 mb-4">
-              Official transcripts and academic records are available upon
-              request.
-            </p>
-            <button className="btn-secondary text-sm">
-              Request Transcript
-            </button>
           </div>
         </div>
       </div>

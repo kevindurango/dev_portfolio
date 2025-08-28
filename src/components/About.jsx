@@ -90,6 +90,17 @@ const About = () => {
                 believe in writing clean, maintainable code and creating
                 meaningful user experiences.
               </p>
+
+              <p className="leading-relaxed">
+                While my primary focus is web development, I'm also{" "}
+                <span className="font-semibold text-primary-700">
+                  open to exploring other IT-related opportunities
+                </span>{" "}
+                including technical support, system administration, data entry,
+                virtual assistant roles, and other technology-focused positions.
+                My adaptability and strong problem-solving skills make me a
+                versatile candidate for various roles in the digital workspace.
+              </p>
             </div>
 
             {/* Education */}

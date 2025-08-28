@@ -5,12 +5,26 @@ import {
   SiBootstrap,
   SiReact,
   SiPhp,
+  SiPython,
   SiMysql,
   SiGit,
   SiJavascript,
   SiTypescript,
   SiTailwindcss,
+  SiAdobephotoshop,
+  SiAdobeillustrator,
+  SiFigma,
+  SiCanva,
+  SiGoogledrive,
+  SiGooglesheets,
+  SiGoogledocs,
+  SiSlack,
+  SiTrello,
+  SiAsana,
+  SiPandas,
+  SiScikitlearn,
 } from "react-icons/si";
+import { HiOfficeBuilding, HiClock } from "react-icons/hi";
 
 const Skills = () => {
   const skillCategories = [
@@ -21,37 +35,31 @@ const Skills = () => {
           name: "HTML5",
           icon: <SiHtml5 className="w-8 h-8" />,
           color: "#E34F26",
-          level: 90,
         },
         {
           name: "CSS3",
           icon: <SiCss3 className="w-8 h-8" />,
           color: "#1572B6",
-          level: 85,
         },
         {
           name: "JavaScript",
           icon: <SiJavascript className="w-8 h-8" />,
           color: "#F7DF1E",
-          level: 80,
         },
         {
           name: "React",
           icon: <SiReact className="w-8 h-8" />,
           color: "#61DAFB",
-          level: 75,
         },
         {
           name: "Bootstrap",
           icon: <SiBootstrap className="w-8 h-8" />,
           color: "#7952B3",
-          level: 85,
         },
         {
           name: "Tailwind CSS",
           icon: <SiTailwindcss className="w-8 h-8" />,
           color: "#06B6D4",
-          level: 70,
         },
       ],
     },
@@ -62,13 +70,36 @@ const Skills = () => {
           name: "PHP",
           icon: <SiPhp className="w-8 h-8" />,
           color: "#777BB4",
-          level: 80,
+        },
+        {
+          name: "Python",
+          icon: <SiPython className="w-8 h-8" />,
+          color: "#3776AB",
         },
         {
           name: "MySQL",
           icon: <SiMysql className="w-8 h-8" />,
           color: "#4479A1",
-          level: 75,
+        },
+      ],
+    },
+    {
+      title: "Data Analysis & Machine Learning",
+      skills: [
+        {
+          name: "Pandas",
+          icon: <SiPandas className="w-8 h-8" />,
+          color: "#150458",
+        },
+        {
+          name: "Scikit-learn",
+          icon: <SiScikitlearn className="w-8 h-8" />,
+          color: "#F7931E",
+        },
+        {
+          name: "Matplotlib",
+          icon: <SiPython className="w-8 h-8" />,
+          color: "#11557C",
         },
       ],
     },
@@ -79,13 +110,81 @@ const Skills = () => {
           name: "Git",
           icon: <SiGit className="w-8 h-8" />,
           color: "#F05032",
-          level: 70,
         },
         {
           name: "TypeScript",
           icon: <SiTypescript className="w-8 h-8" />,
           color: "#3178C6",
-          level: 65,
+        },
+      ],
+    },
+    {
+      title: "Design & Graphics",
+      skills: [
+        {
+          name: "Photoshop",
+          icon: <SiAdobephotoshop className="w-8 h-8" />,
+          color: "#31A8FF",
+        },
+        {
+          name: "Illustrator",
+          icon: <SiAdobeillustrator className="w-8 h-8" />,
+          color: "#FF9A00",
+        },
+        {
+          name: "Figma",
+          icon: <SiFigma className="w-8 h-8" />,
+          color: "#F24E1E",
+        },
+        {
+          name: "Canva",
+          icon: <SiCanva className="w-8 h-8" />,
+          color: "#00C4CC",
+        },
+      ],
+    },
+    {
+      title: "Collaboration & Productivity",
+      skills: [
+        {
+          name: "Google Workspace",
+          icon: <SiGoogledrive className="w-8 h-8" />,
+          color: "#4285F4",
+        },
+        {
+          name: "Google Docs",
+          icon: <SiGoogledocs className="w-8 h-8" />,
+          color: "#4285F4",
+        },
+        {
+          name: "Google Sheets",
+          icon: <SiGooglesheets className="w-8 h-8" />,
+          color: "#34A853",
+        },
+        {
+          name: "Slack",
+          icon: <SiSlack className="w-8 h-8" />,
+          color: "#4A154B",
+        },
+        {
+          name: "Trello",
+          icon: <SiTrello className="w-8 h-8" />,
+          color: "#0079BF",
+        },
+        {
+          name: "Microsoft Teams",
+          icon: <HiOfficeBuilding className="w-8 h-8" />,
+          color: "#6264A7",
+        },
+        {
+          name: "Asana",
+          icon: <SiAsana className="w-8 h-8" />,
+          color: "#F06A6A",
+        },
+        {
+          name: "Timeneye",
+          icon: <HiClock className="w-8 h-8" />,
+          color: "#FF6B35",
         },
       ],
     },
@@ -129,21 +228,6 @@ const Skills = () => {
                     <h4 className="text-lg font-semibold text-gray-900 mb-3">
                       {skill.name}
                     </h4>
-
-                    {/* Skill Level Bar */}
-                    <div className="w-full bg-gray-200 rounded-full h-2 mb-2">
-                      <div
-                        className="h-2 rounded-full transition-all duration-1000 ease-out"
-                        style={{
-                          width: `${skill.level}%`,
-                          backgroundColor: skill.color,
-                        }}
-                      ></div>
-                    </div>
-
-                    <span className="text-sm text-secondary">
-                      {skill.level}% Proficiency
-                    </span>
                   </div>
                 ))}
               </div>
@@ -169,6 +253,12 @@ const Skills = () => {
               "Agile Methodology",
               "Problem Solving",
               "Team Collaboration",
+              "Project Management",
+              "Visual Design",
+              "Brand Identity",
+              "Digital Marketing",
+              "Content Creation",
+              "Remote Work",
             ].map((skill, index) => (
               <span
                 key={index}

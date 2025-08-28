@@ -1,4 +1,6 @@
 import React from "react";
+import farmersmarket from "../assets/images/farmers-market.png";
+import ecommerce from "../assets/images/e-commerce.png";
 import {
   ExternalLink,
   Github,
@@ -15,7 +17,7 @@ const Projects = () => {
       type: "Capstone Project",
       description:
         "A comprehensive full-stack agricultural marketplace application built with modern technologies. Features role-based access control, real-time data synchronization, and a robust database architecture with 15+ interconnected tables.",
-      image: "/api/placeholder/600/400",
+      image: farmersmarket,
       technologies: [
         "React Native",
         "TypeScript",
@@ -46,7 +48,7 @@ const Projects = () => {
           text: "TypeScript Integration",
         },
       ],
-      github: "#",
+      github: "https://github.com/kevindurango/capstone",
       demo: "#",
       status: "Completed",
     },
@@ -56,7 +58,7 @@ const Projects = () => {
       type: "Internship Project",
       description:
         "Developed and enhanced various e-commerce features during my internship at Lumenvo Digital Agency. Focused on improving user experience and implementing responsive design patterns.",
-      image: "/api/placeholder/600/400",
+      image: ecommerce,
       technologies: ["PHP", "MySQL", "Bootstrap", "CSS", "JavaScript", "HTML"],
       features: [
         "Responsive product catalog with advanced filtering",
@@ -79,9 +81,9 @@ const Projects = () => {
           text: "Production Ready",
         },
       ],
-      github: "#",
+      github: "https://github.com/kevindurango/tech_web",
       demo: "#",
-      status: "Professional Work",
+      status: "Internship",
     },
   ];
 
@@ -108,12 +110,22 @@ const Projects = () => {
               {/* Project Image */}
               <div className={`${index % 2 === 1 ? "lg:col-start-2" : ""}`}>
                 <div className="relative group">
-                  <div className="aspect-video bg-gradient-to-br from-blue-100 to-purple-100 rounded-lg flex items-center justify-center">
-                    <div className="text-center text-gray-500">
-                      <Code className="w-16 h-16 mx-auto mb-4 opacity-50" />
-                      <p className="text-sm">Project Screenshot</p>
-                      <p className="text-xs">Coming Soon</p>
-                    </div>
+                  <div className="aspect-video bg-gradient-to-br from-blue-100 to-purple-100 rounded-lg overflow-hidden">
+                    {project.image && typeof project.image === "string" ? (
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                    ) : (
+                      <div className="flex items-center justify-center h-full">
+                        <div className="text-center text-gray-500">
+                          <Code className="w-16 h-16 mx-auto mb-4 opacity-50" />
+                          <p className="text-sm">Project Screenshot</p>
+                          <p className="text-xs">Coming Soon</p>
+                        </div>
+                      </div>
+                    )}
                   </div>
 
                   {/* Status Badge */}
@@ -200,7 +212,8 @@ const Projects = () => {
                     <a
                       href={project.github}
                       className="btn btn-outline flex items-center gap-2"
-                      onClick={(e) => e.preventDefault()}
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
                       <Github className="w-4 h-4" />
                       View Code

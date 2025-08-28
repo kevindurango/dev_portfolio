@@ -1,5 +1,6 @@
 import React from "react";
 import { Building2, Calendar, MapPin, CheckCircle } from "lucide-react";
+import lumenvoLogo from "../assets/images/lumenvo.png";
 
 const Experience = () => {
   const experiences = [
@@ -53,6 +54,17 @@ const Experience = () => {
                 <div className="grid md:grid-cols-3 gap-6">
                   {/* Left Column - Basic Info */}
                   <div className="md:col-span-1">
+                    {/* Company Logo */}
+                    <div className="flex justify-center mb-4">
+                      <div className="w-30 h-20 bg-dark rounded-lg shadow-sm border border-gray-200 flex items-center justify-center p-2">
+                        <img
+                          src={lumenvoLogo}
+                          alt="Lumenvo Digital Agency Logo"
+                          className="w-full h-full object-contain"
+                        />
+                      </div>
+                    </div>
+
                     <div className="flex items-center gap-3 mb-3">
                       <Building2 className="w-6 h-6 text-primary flex-shrink-0" />
                       <div>
