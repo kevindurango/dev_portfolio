@@ -83,7 +83,7 @@ const Hero = () => {
             </a>
 
             <a
-              href="/dev_portfolio/resume.pdf"
+              href="/resume.pdf"
               download="Kevin_Chris_Durango_Resume.pdf"
               className="btn btn-outline flex items-center gap-2"
             >
