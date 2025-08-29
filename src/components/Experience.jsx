@@ -11,13 +11,13 @@ const Experience = () => {
       period: "July 2024 – January 2025",
       type: "Internship",
       description:
-        "Gained hands-on experience in web development, working on real-world projects and contributing to the company's digital solutions.",
+        "Completed comprehensive web development training through practical projects that replicated real-world business scenarios and industry standards.",
       achievements: [
-        "Developed e-commerce features using Bootstrap and CSS, improving user interface and shopping experience",
-        "Collaborated with senior developers on PHP and MySQL backend development for client projects",
-        "Utilized Git for version control, participating in code reviews and maintaining project documentation",
-        "Contributed to responsive web design implementation, ensuring cross-device compatibility",
-        "Participated in agile development processes and team standups",
+        "Built e-commerce applications using Bootstrap and CSS, implementing modern UI/UX design principles",
+        "Developed backend functionality with PHP and MySQL for database-driven web applications",
+        "Mastered Git version control workflows, including branching, merging, and collaborative development practices",
+        "Created responsive web designs ensuring optimal user experience across all device types",
+        "Applied agile development methodologies and participated in structured code review processes",
       ],
       technologies: [
         "PHP",

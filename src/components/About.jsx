@@ -79,9 +79,10 @@ const About = () => {
                 <span className="font-semibold text-primary-700">
                   Lumenvo Digital Agency
                 </span>
-                , I contributed to real-world projects, developing e-commerce
-                features and working with cross-functional teams to deliver
-                high-quality solutions.
+                , I completed comprehensive training through practical projects
+                that replicated real-world business scenarios, developing
+                e-commerce applications and collaborating with teams to build
+                industry-standard solutions.
               </p>
 
               <p className="leading-relaxed">

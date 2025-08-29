@@ -6,10 +6,10 @@
  */
 export function getAssetPath(asset) {
   // For public assets (like PDFs, images in public folder), use the base URL
-  if (asset.endsWith('.pdf') || asset === 'resume.pdf') {
+  if (asset.endsWith(".pdf") || asset === "resume.pdf") {
     return `/${asset}`;
   }
-  
+
   // For Vite, import the asset directly to ensure proper bundling
   try {
     // First try to import from the assets directory
