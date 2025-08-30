@@ -49,7 +49,6 @@ const Projects = () => {
         },
       ],
       github: "https://github.com/kevindurango/capstone",
-      demo: "#",
       status: "Completed",
     },
     // Adding placeholder for future projects
@@ -57,7 +56,7 @@ const Projects = () => {
       title: "E-commerce Platform Features",
       type: "Internship Project",
       description:
-        "Developed and enhanced various e-commerce features during my internship at Lumenvo Digital Agency. Focused on improving user experience and implementing responsive design patterns.",
+        "Built comprehensive e-commerce application features as part of my training at Lumenvo Digital Agency. Focused on learning modern web development practices and implementing responsive design patterns through hands-on project work.",
       image: ecommerce,
       technologies: ["PHP", "MySQL", "Bootstrap", "CSS", "JavaScript", "HTML"],
       features: [
@@ -78,11 +77,10 @@ const Projects = () => {
         },
         {
           icon: <Star className="w-5 h-5" />,
-          text: "Production Ready",
+          text: "Industry Standards",
         },
       ],
       github: "https://github.com/kevindurango/tech_web",
-      demo: "#",
       status: "Internship",
     },
   ];
@@ -217,14 +215,6 @@ const Projects = () => {
                     >
                       <Github className="w-4 h-4" />
                       View Code
-                    </a>
-                    <a
-                      href={project.demo}
-                      className="btn btn-primary flex items-center gap-2"
-                      onClick={(e) => e.preventDefault()}
-                    >
-                      <ExternalLink className="w-4 h-4" />
-                      Live Demo
                     </a>
                   </div>
                 </div>
