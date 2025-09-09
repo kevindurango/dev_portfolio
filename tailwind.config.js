@@ -5,26 +5,48 @@ export default {
     extend: {
       colors: {
         primary: {
-          DEFAULT: "#1e3a8a",
-          50: "#eff6ff",
-          100: "#dbeafe",
-          200: "#bfdbfe",
-          300: "#93c5fd",
-          400: "#60a5fa",
-          500: "#3b82f6",
-          600: "#2563eb",
-          700: "#1d4ed8",
-          800: "#1e3a8a",
-          900: "#1e3a8a",
+          DEFAULT: "#1e293b", // Professional slate
+          50: "#f8fafc",
+          100: "#f1f5f9",
+          200: "#e2e8f0",
+          300: "#cbd5e1",
+          400: "#94a3b8",
+          500: "#64748b",
+          600: "#475569",
+          700: "#334155",
+          800: "#1e293b",
+          900: "#0f172a",
         },
         secondary: {
-          DEFAULT: "#3b82f6",
-          light: "#60a5fa",
+          DEFAULT: "#0369a1", // Professional blue
+          light: "#0ea5e9",
+          dark: "#1e40af",
+        },
+        accent: {
+          DEFAULT: "#d97706", // Professional gold/amber
+          light: "#f59e0b",
+          dark: "#92400e",
         },
         dark: {
-          DEFAULT: "#1f2937",
-          light: "#374151",
-          lighter: "#6b7280",
+          DEFAULT: "#0f172a",
+          light: "#1e293b",
+          lighter: "#334155",
+        },
+        success: {
+          DEFAULT: "#059669",
+          light: "#10b981",
+        },
+        neutral: {
+          50: "#f8fafc",
+          100: "#f1f5f9",
+          200: "#e2e8f0",
+          300: "#cbd5e1",
+          400: "#94a3b8",
+          500: "#64748b",
+          600: "#475569",
+          700: "#334155",
+          800: "#1e293b",
+          900: "#0f172a",
         },
       },
       fontFamily: {

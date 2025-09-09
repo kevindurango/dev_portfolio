@@ -12,15 +12,17 @@
 }
 
 :root {
-  --primary-color: #1e3a8a;
-  --secondary-color: #3b82f6;
-  --accent-color: #60a5fa;
-  --text-primary: #1f2937;
-  --text-secondary: #6b7280;
-  --text-light: #9ca3af;
+  --primary-color: #1e293b;
+  --secondary-color: #0369a1;
+  --accent-color: #d97706;
+  --success-color: #059669;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-light: #64748b;
   --background-light: #f8fafc;
   --background-white: #ffffff;
-  --border-color: #e5e7eb;
+  --background-neutral: #f1f5f9;
+  --border-color: #e2e8f0;
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1),
@@ -29,6 +31,11 @@
     135deg,
     var(--primary-color),
     var(--secondary-color)
+  );
+  --gradient-accent: linear-gradient(
+    135deg,
+    var(--secondary-color),
+    var(--accent-color)
   );
 }
 
