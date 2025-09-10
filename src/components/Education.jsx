@@ -121,6 +121,59 @@ const AwardsSlideshow = () => {
 };
 
 const Education = () => {
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  // Modal component for full-size document viewing
+  const ImageModal = ({ image, title, onClose }) => {
+    if (!image) return null;
+
+    const handleBackdropClick = (e) => {
+      if (e.target === e.currentTarget) {
+        onClose();
+      }
+    };
+
+    return (
+      <div
+        className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4"
+        onClick={handleBackdropClick}
+      >
+        <div className="relative max-w-5xl max-h-[90vh] w-full">
+          <button
+            onClick={onClose}
+            className="absolute -top-12 right-0 text-white hover:text-gray-300 z-10 flex items-center space-x-2 bg-black bg-opacity-50 px-3 py-2 rounded-lg"
+          >
+            <span className="text-sm">Close</span>
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+          <div className="bg-white rounded-lg p-4 shadow-2xl">
+            <h3 className="text-lg font-semibold text-gray-800 mb-4 text-center">
+              {title}
+            </h3>
+            <img
+              src={image}
+              alt={title}
+              className="w-full h-auto max-h-[70vh] object-contain rounded-lg"
+              onClick={(e) => e.stopPropagation()}
+            />
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   const education = {
     degree: "Bachelor of Science in Information Technology",
     school: "Negros Oriental State University",
@@ -266,13 +319,46 @@ const Education = () => {
               </h4>
               <div className="grid md:grid-cols-2 gap-4">
                 {/* TOR Preview */}
-                <div className="aspect-[3/4] bg-white rounded-lg border shadow flex flex-col items-center justify-center overflow-hidden">
-                  <img
-                    src={torImage}
-                    alt="TOR Preview"
-                    className="w-full h-full object-cover"
-                  />
-                  <p className="text-xs font-medium mt-2">TOR Preview</p>
+                <div className="relative group">
+                  <div
+                    className="aspect-[3/4] bg-white rounded-lg border shadow cursor-pointer overflow-hidden"
+                    onClick={() =>
+                      setSelectedImage({
+                        image: torImage,
+                        title: "Transcript of Records (TOR)",
+                      })
+                    }
+                  >
+                    <img
+                      src={torImage}
+                      alt="TOR Preview"
+                      className="w-full h-full object-cover hover:shadow-lg transition-shadow duration-300"
+                    />
+                    <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300 rounded-lg flex items-center justify-center">
+                      <svg
+                        className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                        />
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                  <p className="text-xs font-medium mt-2 text-center text-gray-600">
+                    Click to view TOR
+                  </p>
                 </div>
 
                 {/* Awards Slideshow */}
@@ -366,6 +452,15 @@ const Education = () => {
           </div>
         </div>
       </div>
+
+      {/* Image Modal */}
+      {selectedImage && (
+        <ImageModal
+          image={selectedImage.image}
+          title={selectedImage.title}
+          onClose={() => setSelectedImage(null)}
+        />
+      )}
     </section>
   );
 };

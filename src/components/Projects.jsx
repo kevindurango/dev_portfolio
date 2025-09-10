@@ -1,6 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import farmersmarket from "../assets/images/farmers-market.png";
+import farmersmarket1 from "../assets/images/farmers-market-1.png";
+import farmersmarket2 from "../assets/images/farmers-market-2.png";
+import farmersmarket3 from "../assets/images/farmers-market-3.png";
+import farmersmarket4 from "../assets/images/farmers-market-4.png";
+import farmersmarket5 from "../assets/images/farmers-market-5.png";
+import farmersmarket6 from "../assets/images/farmers-market-6.png";
+import farmersmarket7 from "../assets/images/farmers-market-7.png";
+import farmersmarket8 from "../assets/images/farmers-market-8.png";
+import farmersmarket9 from "../assets/images/farmers-market-9.png";
+import farmersmarket10 from "../assets/images/farmers-market-10.png";
 import ecommerce from "../assets/images/e-commerce.png";
+import ecommerce2 from "../assets/images/e-commerce-2.png";
 import {
   ExternalLink,
   Github,
@@ -8,16 +19,59 @@ import {
   Database,
   Smartphone,
   Code,
+  X,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 
 const Projects = () => {
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [currentProject, setCurrentProject] = useState(null);
+
+  const openImageModal = (project, imageIndex) => {
+    setCurrentProject(project);
+    setCurrentImageIndex(imageIndex);
+    setSelectedImage(project.images[imageIndex]);
+  };
+
+  const closeImageModal = () => {
+    setSelectedImage(null);
+    setCurrentProject(null);
+    setCurrentImageIndex(0);
+  };
+
+  const navigateImage = (direction) => {
+    if (!currentProject) return;
+
+    const newIndex =
+      direction === "next"
+        ? (currentImageIndex + 1) % currentProject.images.length
+        : (currentImageIndex - 1 + currentProject.images.length) %
+          currentProject.images.length;
+
+    setCurrentImageIndex(newIndex);
+    setSelectedImage(currentProject.images[newIndex]);
+  };
   const projects = [
     {
       title: "Farmers Market Management System",
       type: "Capstone Project",
       description:
         "A comprehensive full-stack agricultural marketplace application built with modern technologies. Features role-based access control, real-time data synchronization, and a robust database architecture with 15+ interconnected tables.",
-      image: farmersmarket,
+      images: [
+        farmersmarket,
+        farmersmarket1,
+        farmersmarket2,
+        farmersmarket3,
+        farmersmarket4,
+        farmersmarket5,
+        farmersmarket6,
+        farmersmarket7,
+        farmersmarket8,
+        farmersmarket9,
+        farmersmarket10,
+      ],
       technologies: [
         "React Native",
         "TypeScript",
@@ -51,13 +105,12 @@ const Projects = () => {
       github: "https://github.com/kevindurango/capstone",
       status: "Completed",
     },
-    // Adding placeholder for future projects
     {
       title: "E-commerce Platform Features",
       type: "Internship Project",
       description:
         "Built comprehensive e-commerce application features as part of my training at Lumenvo Digital Agency. Focused on learning modern web development practices and implementing responsive design patterns through hands-on project work.",
-      image: ecommerce,
+      images: [ecommerce, ecommerce2],
       technologies: ["PHP", "MySQL", "Bootstrap", "CSS", "JavaScript", "HTML"],
       features: [
         "Responsive product catalog with advanced filtering",
@@ -105,29 +158,113 @@ const Projects = () => {
               }`}
               style={{ animationDelay: `${index * 0.2}s` }}
             >
-              {/* Project Image */}
+              {/* Project Images */}
               <div className={`${index % 2 === 1 ? "lg:col-start-2" : ""}`}>
-                <div className="relative group">
-                  <div className="aspect-video bg-gradient-to-br from-blue-100 to-purple-100 rounded-lg overflow-hidden">
-                    {project.image && typeof project.image === "string" ? (
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
-                    ) : (
-                      <div className="flex items-center justify-center h-full">
-                        <div className="text-center text-gray-500">
-                          <Code className="w-16 h-16 mx-auto mb-4 opacity-50" />
-                          <p className="text-sm">Project Screenshot</p>
-                          <p className="text-xs">Coming Soon</p>
+                <div className="relative">
+                  {project.images && project.images.length > 0 ? (
+                    <div className="space-y-4">
+                      {/* Main Featured Image */}
+                      <div className="relative group cursor-pointer rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500">
+                        <div
+                          className="aspect-video bg-gradient-to-br from-blue-50 to-purple-50"
+                          onClick={() => openImageModal(project, 0)}
+                        >
+                          <img
+                            src={project.images[0]}
+                            alt={`${project.title} Main Screenshot`}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          />
+                          {/* Overlay with zoom indicator */}
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div className="absolute inset-0 flex items-center justify-center">
+                              <div className="bg-white/20 backdrop-blur-sm rounded-full p-3 border border-white/30">
+                                <svg
+                                  className="w-6 h-6 text-white"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
+                                  />
+                                </svg>
+                              </div>
+                            </div>
+                            {/* Image counter badge */}
+                            <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium">
+                              {project.images.length} image
+                              {project.images.length > 1 ? "s" : ""}
+                            </div>
+                          </div>
                         </div>
                       </div>
-                    )}
-                  </div>
+
+                      {/* Thumbnail Grid for Additional Images */}
+                      {project.images.length > 1 && (
+                        <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                          {project.images.slice(1).map((img, imgIdx) => (
+                            <div
+                              key={imgIdx + 1}
+                              className="relative group cursor-pointer rounded-lg overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 hover:shadow-lg transition-all duration-300"
+                              onClick={() =>
+                                openImageModal(project, imgIdx + 1)
+                              }
+                            >
+                              <div className="aspect-video">
+                                <img
+                                  src={img}
+                                  alt={`${project.title} Screenshot ${
+                                    imgIdx + 2
+                                  }`}
+                                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                                />
+                                {/* Hover overlay */}
+                                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+                                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    <div className="bg-white/90 backdrop-blur-sm rounded-full p-2">
+                                      <svg
+                                        className="w-4 h-4 text-gray-800"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                      >
+                                        <path
+                                          strokeLinecap="round"
+                                          strokeLinejoin="round"
+                                          strokeWidth={2}
+                                          d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                                        />
+                                        <path
+                                          strokeLinecap="round"
+                                          strokeLinejoin="round"
+                                          strokeWidth={2}
+                                          d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                                        />
+                                      </svg>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <div className="flex items-center justify-center h-full aspect-video bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl">
+                      <div className="text-center text-gray-500">
+                        <Code className="w-16 h-16 mx-auto mb-4 opacity-50" />
+                        <p className="text-sm">Project Screenshot</p>
+                        <p className="text-xs">Coming Soon</p>
+                      </div>
+                    </div>
+                  )}
 
                   {/* Status Badge */}
-                  <div className="absolute top-4 left-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                  <div className="absolute top-4 left-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium shadow-lg">
                     {project.status}
                   </div>
                 </div>
@@ -242,6 +379,81 @@ const Projects = () => {
             </a>
           </div>
         </div>
+
+        {/* Image Modal */}
+        {selectedImage && (
+          <div className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4">
+            <div className="relative max-w-5xl max-h-full">
+              {/* Close button */}
+              <button
+                onClick={closeImageModal}
+                className="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors"
+              >
+                <X className="w-8 h-8" />
+              </button>
+
+              {/* Navigation buttons */}
+              {currentProject && currentProject.images.length > 1 && (
+                <>
+                  <button
+                    onClick={() => navigateImage("prev")}
+                    className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 transition-colors bg-black bg-opacity-50 rounded-full p-2"
+                  >
+                    <ChevronLeft className="w-6 h-6" />
+                  </button>
+                  <button
+                    onClick={() => navigateImage("next")}
+                    className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 transition-colors bg-black bg-opacity-50 rounded-full p-2"
+                  >
+                    <ChevronRight className="w-6 h-6" />
+                  </button>
+                </>
+              )}
+
+              {/* Main image */}
+              <img
+                src={selectedImage}
+                alt={`${currentProject?.title} Screenshot ${
+                  currentImageIndex + 1
+                }`}
+                className="max-w-full max-h-[80vh] object-contain rounded-lg"
+              />
+
+              {/* Image counter and project info */}
+              <div className="absolute bottom-4 left-4 right-4 text-white">
+                <div className="bg-black bg-opacity-50 rounded-lg p-3">
+                  <div className="flex justify-between items-center">
+                    <div>
+                      <h4 className="font-semibold">{currentProject?.title}</h4>
+                      <p className="text-sm text-gray-300">
+                        Image {currentImageIndex + 1} of{" "}
+                        {currentProject?.images.length}
+                      </p>
+                    </div>
+                    {currentProject?.images.length > 1 && (
+                      <div className="flex gap-1">
+                        {currentProject.images.map((_, idx) => (
+                          <button
+                            key={idx}
+                            onClick={() => {
+                              setCurrentImageIndex(idx);
+                              setSelectedImage(currentProject.images[idx]);
+                            }}
+                            className={`w-2 h-2 rounded-full transition-colors ${
+                              idx === currentImageIndex
+                                ? "bg-white"
+                                : "bg-gray-500"
+                            }`}
+                          />
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );
